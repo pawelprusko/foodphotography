@@ -6,7 +6,6 @@
         <router-link to="/home">
           <button class="visit pa-2 mt-5">CONTINUE</button>
         </router-link>
-       
       </v-layout>
     </v-container>
   </v-app>

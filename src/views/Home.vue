@@ -31,7 +31,7 @@
       </div>
       <v-spacer></v-spacer>
       <div class="footer">
-        <span>pawelprusko photography &copy; {{ new Date().getFullYear() }}</span>
+        <span>pawelprusko &copy; {{ new Date().getFullYear() }}</span>
       </div>
     </v-footer>
     <v-navigation-drawer app v-model="right" class="white">
@@ -39,7 +39,7 @@
         <v-layout column justify-center align-center style="height: 95vh">
            <v-btn flat class="btn-menu"><router-link to="/about" class="btn-menu">ABOUT</router-link></v-btn> 
           <div class="line"></div>
-          <v-btn flat class="btn-menu"><router-link to="/contact" class="btn-menu" >CONTACT</router-link></v-btn>
+          <v-btn flat class="btn-menu"><router-link to="/contact" class="btn-menu">CONTACT</router-link></v-btn>
           <div>
             <a href="https://www.linkedin.com/in/pawe%C5%82prusko/">
               <img src="../logo/linkedin.svg" alt class="social">
@@ -106,7 +106,6 @@ export default {
         require("@/photos/34.jpg"),
         require("@/photos/35.jpg"),
         require("@/photos/57.jpg"),
-        require("@/photos/36.jpg"),
         require("@/photos/37.jpg"),
         require("@/photos/38.jpg"),
         require("@/photos/39.jpg"),
@@ -114,6 +113,7 @@ export default {
         require("@/photos/41.jpg"),
         require("@/photos/42.jpg"),
         require("@/photos/44.jpg"),
+        require("@/photos/36.jpg"),
         require("@/photos/45.jpg"),
         require("@/photos/46.jpg"),
         require("@/photos/47.jpg"),
@@ -144,7 +144,6 @@ export default {
 </script>
 
 <style scoped>
-
 .pic {
   width: 100%;
   height: auto;
@@ -152,7 +151,6 @@ export default {
   cursor: pointer;
   transition: .4s;
 }
-
 .logo {
   height: 50px;
   display: inline-block;

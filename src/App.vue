@@ -1,41 +1,38 @@
 <template>
   <v-app>
-    <router-view>
-    <v-toolbar app prominent flat>
-     <v-container pt-2>
-       <v-layout justify-center align-center  align-baseline>
-      
-      <img src="./logo/template.png" alt="">
-      </v-layout>
-      </v-container>
-     
-    </v-toolbar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-    </router-view>
+    <transition name="router-anim" enter-active-class="animated fadeInLeft">
+      <router-view/>
+    </transition>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import HelloWorld from "./components/HelloWorld";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HelloWorld
   },
-  data () {
+  data() {
     return {
       //
-    }
+    };
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
-img{
+<style scoped>
+@import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
+
+.fadeInLeft {
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+}
+
+img {
   height: 50px;
   display: inline-block;
 }
