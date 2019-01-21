@@ -4,7 +4,7 @@
       <v-layout justify-center align-center column>
         <img class="heroImg" src="../logo/white.png" alt>
         <router-link to="/home">
-          <button class="visit pa-2 mt-5">CONTINUUE</button>
+          <button class="visit pa-2 mt-5">CONTINUE</button>
         </router-link>
        
       </v-layout>
