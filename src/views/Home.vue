@@ -12,67 +12,12 @@
       <v-toolbar-side-icon @click="right =!right"></v-toolbar-side-icon>
     </v-toolbar>
     <div class="gallery">
-      <img src="../photos/55.jpg" alt class="galleryImages">
-      <img src="../photos/0.jpg" alt class="galleryImages">
-      <img src="../photos/1.jpg" alt class="galleryImages">
-      <img src="../photos/2.jpg" alt class="galleryImages">
-      <img src="../photos/3.jpg" alt class="galleryImages">
-      <img src="../photos/4.jpg" alt class="galleryImages">
-      <img src="../photos/5.jpg" alt class="galleryImages">
-      <img src="../photos/6.jpg" alt class="galleryImages">
-      <img src="../photos/7.jpg" alt class="galleryImages">
-      <img src="../photos/8.jpg" alt class="galleryImages">
-      <img src="../photos/9.jpg" alt class="galleryImages">
-      <img src="../photos/10.jpg" alt class="galleryImages">
-      <img src="../photos/11.jpg" alt class="galleryImages">
-      <img src="../photos/12.jpg" alt class="galleryImages">
-      <img src="../photos/13.jpg" alt class="galleryImages">
-      <img src="../photos/14.jpg" alt class="galleryImages">
-      <img src="../photos/15.jpg" alt class="galleryImages">
-      <img src="../photos/16.jpg" alt class="galleryImages">
-      <img src="../photos/17.jpg" alt class="galleryImages">
-      <img src="../photos/18.jpg" alt class="galleryImages">
-      <img src="../photos/19.jpg" alt class="galleryImages">
-      <img src="../photos/20.jpg" alt class="galleryImages">
-      <img src="../photos/21.jpg" alt class="galleryImages">
-      <img src="../photos/22.jpg" alt class="galleryImages">
-      <img src="../photos/23.jpg" alt class="galleryImages">
-      <img src="../photos/24.jpg" alt class="galleryImages">
-      <img src="../photos/25.jpg" alt class="galleryImages">
-      <img src="../photos/26.jpg" alt class="galleryImages">
-      <img src="../photos/27.jpg" alt class="galleryImages">
-      <img src="../photos/28.jpg" alt class="galleryImages">
-      <img src="../photos/29.jpg" alt class="galleryImages">
-      <img src="../photos/30.jpg" alt class="galleryImages">
-      <img src="../photos/31.jpg" alt class="galleryImages">
-      <img src="../photos/32.jpg" alt class="galleryImages">
-      <img src="../photos/33.jpg" alt class="galleryImages">
-      <img src="../photos/34.jpg" alt class="galleryImages">
-      <img src="../photos/35.jpg" alt class="galleryImages">
-      <img src="../photos/36.jpg" alt class="galleryImages">
-      <img src="../photos/37.jpg" alt class="galleryImages">
-      <img src="../photos/38.jpg" alt class="galleryImages">
-      <img src="../photos/39.jpg" alt class="galleryImages">
-      <img src="../photos/40.jpg" alt class="galleryImages">
-      <img src="../photos/41.jpg" alt class="galleryImages">
-      <img src="../photos/42.jpg" alt class="galleryImages">
-      <img src="../photos/44.jpg" alt class="galleryImages">
-      <img src="../photos/45.jpg" alt class="galleryImages">
-      <img src="../photos/46.jpg" alt class="galleryImages">
-      <img src="../photos/47.jpg" alt class="galleryImages">
-      <img src="../photos/48.jpg" alt class="galleryImages">
-      <img src="../photos/49.jpg" alt class="galleryImages">
-      <img src="../photos/50.jpg" alt class="galleryImages">
-      <img src="../photos/51.jpg" alt class="galleryImages">
-      <img src="../photos/52.jpg" alt class="galleryImages">
-      <img src="../photos/43.jpg" alt class="galleryImages">
-      <img src="../photos/53.jpg" alt class="galleryImages">
-      <img src="../photos/54.jpg" alt class="galleryImages">
-      <img src="../photos/56.jpg" alt class="galleryImages">
-      <img src="../photos/57.jpg" alt class="galleryImages">
-      <!-- <img src="../photos/58.jpg" alt="" class="galleryImages"> -->
+      <div v-for="(src, index) in imgs" :key="index" @click="() => show(index)">
+        <img :src="src" class="pic">
+      </div>
     </div>
-    <v-footer class="pa-3">
+    <vue-easy-lightbox :visible="visible" :index="index" :imgs="imgs" @hide="handleHide" class="hidenn"></vue-easy-lightbox>
+    <v-footer class="pa-3 footerAll">
       <div>
         <a href="https://www.linkedin.com/in/pawe%C5%82prusko/">
           <img src="../logo/linkedin.svg" alt class="social-footer">
@@ -89,13 +34,12 @@
         <span>pawelprusko photography &copy; {{ new Date().getFullYear() }}</span>
       </div>
     </v-footer>
-
     <v-navigation-drawer app v-model="right" class="white">
       <v-container style="height: 95vh" pa-0>
         <v-layout column justify-center align-center style="height: 95vh">
-          <v-btn flat class="btn-menu">ABOUT</v-btn>
+           <v-btn flat class="btn-menu"><router-link to="/about" class="btn-menu">ABOUT</router-link></v-btn> 
           <div class="line"></div>
-          <v-btn flat class="btn-menu">CONTACT</v-btn>
+          <v-btn flat class="btn-menu"><router-link to="/contact" class="btn-menu" >CONTACT</router-link></v-btn>
           <div>
             <a href="https://www.linkedin.com/in/pawe%C5%82prusko/">
               <img src="../logo/linkedin.svg" alt class="social">
@@ -107,7 +51,9 @@
               <img src="../logo/facebook.svg" alt class="social">
             </a>
           </div>
-          <v-btn flat class="back-btn" @click="right =!right"><img src="../logo/back.svg" alt="" class="back"></v-btn>
+          <v-btn flat class="back-btn" @click="right =!right">
+            <img src="../logo/back.svg" alt class="back">
+          </v-btn>
         </v-layout>
       </v-container>
     </v-navigation-drawer>
@@ -117,17 +63,96 @@
 <script>
 export default {
   name: "App",
-
   data() {
     return {
       right: false,
-      divider: true
+      divider: true,
+      imgs: [
+        require("@/photos/55.jpg"),
+        require("@/photos/0.jpg"),
+        require("@/photos/1.jpg"),
+        require("@/photos/2.jpg"),
+        require("@/photos/3.jpg"),
+        require("@/photos/4.jpg"),
+        require("@/photos/5.jpg"),
+        require("@/photos/6.jpg"),
+        require("@/photos/7.jpg"),
+        require("@/photos/8.jpg"),
+        require("@/photos/9.jpg"),
+        require("@/photos/10.jpg"),
+        require("@/photos/11.jpg"),
+        require("@/photos/12.jpg"),
+        require("@/photos/13.jpg"),
+        require("@/photos/14.jpg"),
+        require("@/photos/15.jpg"),
+        require("@/photos/16.jpg"),
+        require("@/photos/17.jpg"),
+        require("@/photos/18.jpg"),
+        require("@/photos/19.jpg"),
+        require("@/photos/20.jpg"),
+        require("@/photos/21.jpg"),
+        require("@/photos/22.jpg"),
+        require("@/photos/23.jpg"),
+        require("@/photos/24.jpg"),
+        require("@/photos/25.jpg"),
+        require("@/photos/26.jpg"),
+        require("@/photos/27.jpg"),
+        require("@/photos/28.jpg"),
+        require("@/photos/29.jpg"),
+        require("@/photos/30.jpg"),
+        require("@/photos/31.jpg"),
+        require("@/photos/32.jpg"),
+        require("@/photos/33.jpg"),
+        require("@/photos/34.jpg"),
+        require("@/photos/35.jpg"),
+        require("@/photos/57.jpg"),
+        require("@/photos/36.jpg"),
+        require("@/photos/37.jpg"),
+        require("@/photos/38.jpg"),
+        require("@/photos/39.jpg"),
+        require("@/photos/40.jpg"),
+        require("@/photos/41.jpg"),
+        require("@/photos/42.jpg"),
+        require("@/photos/44.jpg"),
+        require("@/photos/45.jpg"),
+        require("@/photos/46.jpg"),
+        require("@/photos/47.jpg"),
+        require("@/photos/48.jpg"),
+        require("@/photos/49.jpg"),
+        require("@/photos/50.jpg"),
+        require("@/photos/51.jpg"),
+        require("@/photos/52.jpg"),
+        require("@/photos/43.jpg"),
+        require("@/photos/53.jpg"),
+        require("@/photos/54.jpg"),
+        require("@/photos/56.jpg")
+      ],
+      visible: false,
+      index: 0 // default
     };
+  },
+  methods: {
+    show(index) {
+      this.index = index;
+      this.visible = true;
+    },
+    handleHide() {
+      this.visible = false;
+    }
   }
 };
 </script>
 
 <style scoped>
+
+.pic {
+  width: 100%;
+  height: auto;
+  padding: 1%;
+  cursor: pointer;
+  transition: .4s;
+}
+
 .logo {
   height: 50px;
   display: inline-block;
@@ -154,11 +179,6 @@ export default {
   padding: 2%;
   margin-top: 50px;
 }
-.galleryImages {
-  width: 100%;
-  height: auto;
-  padding: 1%;
-}
 @media (max-width: 800px) {
   .gallery {
     column-count: 2;
@@ -168,9 +188,18 @@ export default {
   .gallery {
     column-count: 1;
   }
+  .hidenn{
+  display: none;
+  }
+  .pic{
+    cursor:auto;
+  }
 }
 .footer {
   font-size: 13px;
+}
+.footerAll {
+  background: rgb(218, 218, 218);
 }
 .line {
   width: 90px;
@@ -181,28 +210,31 @@ export default {
   width: 100%;
   font-size: 18px;
   letter-spacing: 5px;
+  text-decoration: none;
+  color: black;
 }
 .social {
   width: 25px;
   height: 25px;
   margin: 50px 5px 0px 5px;
-  transition: .15s;
+  transition: 0.15s;
 }
 .social-footer {
   width: 25px;
   height: 25px;
   margin: 0px 5px 0px 5px;
-  transition: .2s;
+  transition: 0.2s;
 }
-.social-footer:hover, .social:hover{
+.social-footer:hover,
+.social:hover {
   transform: scale(1.2);
 }
-.back{
+.back {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
-.back-btn{
+.back-btn {
   border-radius: 50%;
   width: 10px;
   height: 80px;
@@ -210,9 +242,8 @@ export default {
   display: none;
 }
 @media (max-width: 450px) {
-  .back-btn{
+  .back-btn {
     display: block;
   }
 }
-  
 </style>
